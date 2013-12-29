@@ -4,8 +4,43 @@ Retrieve sharing stats for any url for various social networks.
 
 ## Simple example
 
-    $url = new LinkORB\Component\SocialShare\Url('http://google.com');
-    print_r($url->getShareCount('twitter');
+```php
+$url = new LinkORB\Component\SocialShare\Url('http://google.com');
+print_r($url->getShareCount('twitter');
+```
+Output:
+
+```
+Array
+(
+    [pinterest] => Array
+        (
+            [shares] => 10609
+        )
+
+    [twitter] => Array
+        (
+            [shares] => 7485
+        )
+
+    [facebook] => Array
+        (
+            [id] => http://google.com
+            [comments] => 133545
+            [shares] => 8093503
+            [likes] =>
+            [talking_about_count] =>
+            [were_here_count] =>
+            [count] => 8227048
+        )
+
+    [linkedin] => Array
+        (
+            [count] => 63420
+        )
+
+)
+```
 
 ## Features
 
@@ -25,7 +60,7 @@ Then, add `linkorb/socialshare` to your project's `composer.json`:
 ```json
 {
     "require": {
-        "linkorb/socialshare": "1.*"
+        "linkorb/socialshare": "dev-master"
     }
 }
 ```
