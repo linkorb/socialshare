@@ -1,0 +1,26 @@
+{
+    "name": "linkorb/socialshare",
+    "description": "Retrieve sharing stats for any url for various social networks",
+    "homepage": "http://www.github.com/linkorb/socialshare",
+    "keywords": ["socialmedia", "facebook", "linkedin", "twitter", "pinterest", "share", "sharing"],
+    "type": "library",
+    "authors": [
+        {
+            "name": "Joost Faassen",
+            "email": "j.faassen@linkorb.com",
+    	    "role": "Development"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "guzzle/guzzle": "3.8.*@dev",
+        "doctrine/cache": "1.4.*@dev",
+        "symfony/console": "2.4.*@dev"
+    },
+    "autoload": {
+	"psr-0": {
+	    "LinkORB\\Component\\SocialShare\\": "src/"
+	} 
+    },
+    "license": "MIT"
+}
