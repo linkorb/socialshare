@@ -1,4 +1,4 @@
-# LinkORB\Component\SocialShare
+# LinkORB SocialShare Library
 
 Retrieve sharing stats for any url for various social networks.
 
