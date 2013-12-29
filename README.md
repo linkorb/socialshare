@@ -15,28 +15,32 @@ Array
 (
     [pinterest] => Array
         (
-            [shares] => 10609
+            [count] => 10610
+            [countlabel] => 10.6K
         )
 
     [twitter] => Array
         (
-            [shares] => 7485
+            [count] => 7485
+            [countlabel] => 7.5K
         )
 
     [facebook] => Array
         (
             [id] => http://google.com
             [comments] => 133545
-            [shares] => 8093503
+            [shares] => 2
             [likes] =>
             [talking_about_count] =>
             [were_here_count] =>
-            [count] => 8227048
+            [count] => 133547
+            [countlabel] => 133.5K
         )
 
     [linkedin] => Array
         (
             [count] => 63420
+            [countlabel] => 63.4K
         )
 
 )

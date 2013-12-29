@@ -42,6 +42,18 @@ class Url
         return $info;
     }
 
+    private function labelText($number)
+    {
+
+        if ($number<1000) {
+            return $number;
+        }
+
+        $label = round($number / 1000, 1) . 'K';
+        return $label;
+
+    }
+
     public function getShareCount($type)
     {
         $info = array();
@@ -67,7 +79,9 @@ class Url
                 $json = preg_replace('/^receiveCount\((.*)\)$/', "\\1", $json); // hack to fetch pure json data
                 $data = json_decode($json);
 
-                $info['shares'] = $data->count;
+                $info['count'] = (int)$data->count;
+                $info['countlabel'] = $this->labelText($info['count']);
+
                 break;
             case "twitter":
                 $checkurl = "http://cdn.api.twitter.com/1/urls/count.json?url=" . urlencode($this->url);
@@ -78,7 +92,9 @@ class Url
                 $json = $response->getBody();
                 $data = json_decode($json);
 
-                $info['shares'] = $data->count;
+                $info['count'] = (int)$data->count;
+                $info['countlabel'] = $this->labelText($info['count']);
+
                 break;
 
             case "facebook":
@@ -98,6 +114,8 @@ class Url
                 $info['talking_about_count'] = $data->talking_about_count;
                 $info['were_here_count'] = $data->were_here_count;
                 $info['count'] = (int)$data->shares + (int)$data->likes + (int)$data->comments;
+                $info['countlabel'] = $this->labelText($info['count']);
+
                 break;
 
             case "linkedin":
@@ -111,7 +129,8 @@ class Url
 
                 $data = json_decode($json);
 
-                $info['count'] = $data->count;
+                $info['count'] = (int)$data->count;
+                $info['countlabel'] = $this->labelText($info['count']);
                 break;
             default:
                 throw new InvalidArgumentException('Unsupported network type');
