@@ -6,7 +6,7 @@ Retrieve sharing stats for any url for various social networks.
 
 ```php
 $url = new LinkORB\Component\SocialShare\Url('http://google.com');
-print_r($url->getShareCount('twitter');
+print_r($url->getShareCounts();
 ```
 Output:
 
