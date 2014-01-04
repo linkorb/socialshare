@@ -46,7 +46,7 @@ class Url
     {
 
         if ($number<1000) {
-            return $number;
+            return (int)$number;
         }
 
         $label = round($number / 1000, 1) . 'K';
