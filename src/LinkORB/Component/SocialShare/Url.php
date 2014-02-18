@@ -35,10 +35,13 @@ class Url
     public function getShareCounts()
     {
         $info = array();
+
         $info['pinterest'] = $this->getShareCount('pinterest');
         $info['twitter'] = $this->getShareCount('twitter');
         $info['facebook'] = $this->getShareCount('facebook');
         $info['linkedin'] = $this->getShareCount('linkedin');
+        $info['googleplus'] = $this->getShareCount('googleplus');
+
         return $info;
     }
 
@@ -131,6 +134,42 @@ class Url
 
                 $info['count'] = (int)$data->count;
                 $info['countlabel'] = $this->labelText($info['count']);
+                break;
+            case "googleplus":
+                $checkurl = "https://clients6.google.com/rpc";
+                $postarray = array(
+                    'method' => 'pos.plusones.get',
+                    'id' => 'p',
+                    'params' => array('nolog'=>true, 'id'=>$this->url, 'source'=>'widget', 'userId'=>'@viewer', 'groupId'=>'@self'),
+                    'jsonrpc' => '2.0',
+                    'key' => 'p',
+                    'apiVersion' => 'v1'
+                );
+
+
+                $client = new GuzzleClient($checkurl);
+                $request = $client->post('', array('Content-Type' => 'application/json'), json_encode(array($postarray)));
+                $response = $request->send();
+                $json = $response->getBody();
+                $data = json_decode($json);
+
+                $info['count'] = (int)$data[0]->result->metadata->globalCounts->count;
+                $info['countlabel'] = $this->labelText($info['count']);
+
+                /*
+                Based on http://bradsknutson.com/blog/get-google-share-count-url/
+                However: this seems to no longer work, as ripple pulls in the content through a second ajax request (it's not in the initial response body)
+                
+                $shares_url = 'https://plus.google.com/ripple/details?url='. urlencode($this->url);
+                $response = file_get_contents($shares_url);
+                echo $response;
+                $shares_match = preg_match('@([0-9]+) public shares@',$response,$matches);
+                $shares = $matches[1];
+                echo $shares;
+
+                return intval( $json[0]['result']['metadata']['globalCounts']['count'] );
+                */
+
                 break;
             default:
                 throw new InvalidArgumentException('Unsupported network type');
