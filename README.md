@@ -43,6 +43,11 @@ Array
             [countlabel] => 63.4K
         )
 
+    [googleplus] => Array
+        (
+            [count] => 5142375
+            [countlabel] => 5142.4K
+        )
 )
 ```
 
@@ -54,6 +59,7 @@ Array
 * Support for facebook.com
 * Support for linkedin.com
 * Support for pinterest.com
+* Support for plus.google.com
 
 ## Installing
 
@@ -87,7 +93,7 @@ open a new issue report so that we or others may take care of it.
 
 ## Todo
 
-* Add support for more networks (Tumblr, Google+, etc...)
+* Add support for more networks (Tumblr, QQ, etc...)
 
 ## License
 Please check LICENSE.md for full license information
